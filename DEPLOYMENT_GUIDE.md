@@ -108,6 +108,17 @@ vercel.json
 
 Root Directory를 바꿨다면 반드시 `Deployments`에서 `Redeploy`를 눌러야 합니다.
 
+## Unexpected token '<' 오류가 뜰 때
+
+`Unexpected token '<', "<!doctype "... is not valid JSON`은 사이트가 `/api/neis`에서 JSON을 받아야 하는데 HTML 페이지를 받았다는 뜻입니다.
+
+확인할 것:
+
+1. GitHub 저장소에 `api/neis.js`가 올라가 있는지 확인합니다.
+2. GitHub 저장소에 `vercel.json`이 올라가 있는지 확인합니다.
+3. Vercel의 `Settings > General > Root Directory`가 `index.html`과 `api` 폴더가 있는 위치를 가리키는지 확인합니다.
+4. 다시 배포합니다.
+
 ## 7. 수정 후 다시 배포하기
 
 파일을 수정하면 GitHub에 다시 업로드하고 `Commit changes`를 누릅니다. Vercel이 자동으로 다시 배포합니다.

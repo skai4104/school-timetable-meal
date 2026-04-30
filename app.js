@@ -333,7 +333,7 @@ async function requestNeis(service, params) {
     throw new Error(await readErrorMessage(response) || `서버 오류가 발생했어요. 상태 코드: ${response.status}`);
   }
 
-  return response.json();
+  return parseJsonResponse(await response.text());
 }
 
 function extractRows(data, service) {
@@ -367,6 +367,20 @@ async function readErrorMessage(response) {
     return data.RESULT?.MESSAGE || data.message || text;
   } catch (error) {
     return text;
+  }
+}
+
+function parseJsonResponse(text) {
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    const trimmed = text.trim().slice(0, 80);
+
+    if (trimmed.startsWith("<!doctype") || trimmed.startsWith("<html") || trimmed.startsWith("<")) {
+      throw new Error("/api/neis가 JSON이 아니라 HTML을 반환했어요. GitHub에 api/neis.js가 올라갔는지, Vercel Root Directory가 맞는지, vercel.json을 다시 올렸는지 확인해 주세요.");
+    }
+
+    throw new Error("서버 응답을 JSON으로 읽지 못했어요. API 서버 설정을 확인해 주세요.");
   }
 }
 
