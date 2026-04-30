@@ -25,6 +25,7 @@ config.js
 index.html
 package.json
 styles.css
+vercel.json
 ```
 
 업로드한 뒤 `Commit changes`를 누릅니다.
@@ -83,6 +84,29 @@ https://프로젝트이름.vercel.app/api/neis?service=schoolInfo&Type=json&pInd
 ```
 
 `schoolInfo`가 보이면 성공입니다.
+
+## 404 NOT_FOUND가 뜰 때
+
+`The page could not be found NOT_FOUND`는 Vercel이 `index.html`을 못 찾았다는 뜻일 때가 많습니다.
+
+먼저 GitHub 저장소 첫 화면을 확인합니다. 첫 화면에 아래 파일들이 바로 보여야 합니다.
+
+```text
+index.html
+app.js
+styles.css
+config.js
+api/
+assets/
+vercel.json
+```
+
+만약 GitHub 첫 화면에 `new-chat-2` 같은 폴더 하나만 보이고, 그 폴더 안에 `index.html`이 있다면 둘 중 하나를 해야 합니다.
+
+1. 파일들을 폴더 밖 저장소 첫 화면으로 옮깁니다.
+2. Vercel 프로젝트의 `Settings > General > Root Directory`를 `new-chat-2`로 바꾼 뒤 다시 배포합니다.
+
+Root Directory를 바꿨다면 반드시 `Deployments`에서 `Redeploy`를 눌러야 합니다.
 
 ## 7. 수정 후 다시 배포하기
 

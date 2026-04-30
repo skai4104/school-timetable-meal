@@ -30,3 +30,9 @@ Value: 발급받은 나이스 API 키
 ```text
 https://내프로젝트.vercel.app/api/neis?service=schoolInfo&Type=json&pIndex=1&pSize=1&SCHUL_NM=하나고등학교
 ```
+
+## 404 NOT_FOUND가 뜰 때
+
+Vercel 주소에서 `The page could not be found`가 뜨면 보통 `index.html`이 Vercel 프로젝트의 루트에 없다는 뜻입니다.
+
+GitHub 저장소 첫 화면에 `index.html`, `app.js`, `styles.css`, `config.js`, `api` 폴더가 바로 보여야 합니다. `new-chat-2/index.html`처럼 폴더 안에 들어가 있으면 Vercel의 Root Directory를 그 폴더로 바꾸거나, 파일을 저장소 루트로 옮겨야 합니다.
