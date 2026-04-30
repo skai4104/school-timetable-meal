@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>학교 시간표와 급식표</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel search-panel" aria-labelledby="app-title">
+        <div class="title-row">
+          <img src="./assets/timetable-mark.png" alt="" class="logo" />
+          <div>
+            <p class="kicker">NEIS 학교 정보</p>
+            <h1 id="app-title">학교 시간표와 급식표</h1>
+          </div>
+        </div>
+
+        <form id="school-form" class="search-form">
+          <label for="school-input">학교 이름</label>
+          <div class="search-box">
+            <input id="school-input" type="search" placeholder="예: 하나고등학교" autocomplete="off" />
+            <button type="submit" aria-label="학교 검색">검색</button>
+          </div>
+        </form>
+
+        <div id="status" class="status" role="status" aria-live="polite">학교 이름을 검색해 주세요.</div>
+
+        <div class="section-head">
+          <h2>검색 결과</h2>
+          <button id="demo-button" type="button" class="ghost-button">예시</button>
+        </div>
+        <div id="school-results" class="school-results"></div>
+      </section>
+
+      <section class="panel result-panel" aria-labelledby="result-title">
+        <div class="selected-school">
+          <p class="kicker">선택된 학교</p>
+          <h2 id="selected-school-name">아직 선택된 학교가 없어요</h2>
+          <p id="selected-school-meta">학교를 선택하면 시간표와 급식표를 조회할 수 있어요.</p>
+        </div>
+
+        <form id="lookup-form" class="lookup-form">
+          <div class="field">
+            <label for="date-input">날짜</label>
+            <input id="date-input" type="date" />
+          </div>
+          <div class="field">
+            <label for="grade-select">학년</label>
+            <select id="grade-select"></select>
+          </div>
+          <div class="field">
+            <label for="class-input">반</label>
+            <input id="class-input" type="number" min="1" max="99" value="1" />
+          </div>
+          <button id="lookup-button" type="submit">조회하기</button>
+        </form>
+
+        <div class="quick-row" aria-label="날짜 빠른 선택">
+          <button type="button" data-date-jump="today">오늘</button>
+          <button type="button" data-date-jump="tomorrow">내일</button>
+          <button type="button" data-date-jump="next-week">다음 주</button>
+        </div>
+
+        <div class="result-head">
+          <div>
+            <p id="date-label" class="kicker">조회 결과</p>
+            <h2 id="result-title">시간표</h2>
+          </div>
+          <span id="result-count" class="count-pill">0교시</span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="결과 선택">
+          <button id="tab-timetable" class="active" type="button" role="tab" aria-selected="true" data-view="timetable">시간표</button>
+          <button id="tab-meal" type="button" role="tab" aria-selected="false" data-view="meal">급식표</button>
+        </div>
+
+        <section id="panel-timetable" role="tabpanel" aria-labelledby="tab-timetable">
+          <div id="timetable-empty" class="empty">
+            <img src="./assets/timetable-mark.png" alt="" />
+            <p>학교와 날짜를 선택하면 교시별 수업이 표시돼요.</p>
+          </div>
+          <div id="timetable-list" class="card-list" hidden></div>
+        </section>
+
+        <section id="panel-meal" role="tabpanel" aria-labelledby="tab-meal" hidden>
+          <div id="meal-empty" class="empty">
+            <img src="./assets/timetable-mark.png" alt="" />
+            <p>학교와 날짜를 선택하면 급식 메뉴가 표시돼요.</p>
+          </div>
+          <div id="meal-list" class="card-list" hidden></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
